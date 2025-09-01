@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repertório André de Paula</title>
+    <title>Meu Repertório Musical</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -53,18 +53,18 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
         }
         
-        @media (min-width: 992px) {
-            .container {
-                grid-template-columns: 1fr 1fr;
-            }
+        .instructions {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
         }
         
-        .form-section, .list-section {
+        .list-section {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 12px;
             padding: 2rem;
@@ -86,59 +86,30 @@
             color: #b21f1f;
         }
         
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+        h3 {
             color: #1a2a6c;
+            margin: 1.5rem 0 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
         
-        input, select {
-            width: 100%;
-            padding: 0.9rem;
-            border: 2px solid #ddd;
+        pre {
+            background: #f8f9fa;
+            padding: 1rem;
             border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-left: 4px solid #1a2a6c;
         }
         
-        input:focus, select:focus {
-            border-color: #1a2a6c;
-            outline: none;
-        }
-        
-        button {
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
         }
         
         .song-list {
-            max-height: 600px;
-            overflow-y: auto;
-            padding-right: 0.5rem;
+            margin-top: 2rem;
         }
         
         .song-item {
@@ -193,37 +164,6 @@
             background: #cc0000;
         }
         
-        .actions {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-        
-        .btn-edit, .btn-delete {
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-edit {
-            background: #f39c12;
-        }
-        
-        .btn-edit:hover {
-            background: #e67e22;
-        }
-        
-        .btn-delete {
-            background: #e74c3c;
-        }
-        
-        .btn-delete:hover {
-            background: #c0392b;
-        }
-        
         .no-songs {
             text-align: center;
             padding: 2rem;
@@ -246,13 +186,20 @@
         
         .search-box input {
             padding-left: 2.5rem;
+            width: 100%;
+            padding: 0.9rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .search-box input:focus {
+            border-color: #1a2a6c;
+            outline: none;
         }
         
         @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            
             .song-details {
                 grid-template-columns: 1fr;
             }
@@ -263,6 +210,11 @@
             
             .logo h1 {
                 font-size: 1.8rem;
+            }
+            
+            pre {
+                overflow-x: auto;
+                font-size: 0.8rem;
             }
         }
         
@@ -291,72 +243,11 @@
             <i class="fas fa-music"></i>
             <h1>Repertório André de Paula</h1>
         </div>
-        <p>Organize suas músicas e links do YouTube</p>
+        
     </header>
     
     <div class="container">
-        <section class="form-section">
-            <h2><i class="fas fa-plus-circle"></i> Adicionar Nova Música</h2>
-            <form id="music-form">
-                <div class="form-group">
-                    <label for="title"><i class="fas fa-heading"></i> Nome da Música</label>
-                    <input type="text" id="title" placeholder="Ex: Galileu" required>
-                </div>
                 
-                <div class="form-group">
-                    <label for="artist"><i class="fas fa-user"></i> Intérprete</label>
-                    <input type="text" id="artist" placeholder="Ex: Fernandinho" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="key"><i class="fas fa-music"></i> Tom</label>
-                    <select id="key" required>
-                        <option value="C">C</option>
-                          <option value="C#">C#</option>
-                          <option value="Db">Db</option>
-                          <option value="D">D</option>
-                          <option value="D#">D#</option>
-                          <option value="Eb">Eb</option>
-                          <option value="E">E</option>
-                          <option value="F">F</option>
-                          <option value="F#">F#</option>
-                          <option value="Gb">Gb</option>
-                          <option value="G">G</option>
-                          <option value="G#">G#</option>
-                          <option value="Ab">Ab</option>
-                          <option value="A">A</option>
-                          <option value="A#">A#</option>
-                          <option value="Bb">Bb</option>
-                          <option value="B">B</option>
-                        <option value="Cm">Cm</option>
-                          <option value="C#m">C#m</option>
-                          <option value="Dbm">Dbm</option>
-                          <option value="Dm">Dm</option>
-                          <option value="D#m">D#m</option>
-                          <option value="Ebm">Ebm</option>
-                          <option value="Em">Em</option>
-                          <option value="Fm">Fm</option>
-                          <option value="F#m">F#m</option>
-                          <option value="Gbm">Gbm</option>
-                          <option value="Gm">Gm</option>
-                          <option value="G#m">G#m</option>
-                          <option value="Abm">Abm</option>
-                          <option value="Am">Am</option>
-                          <option value="A#m">A#m</option>
-                          <option value="Bbm">Bbm</option>
-                          <option value="Bm">Bm</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="youtube"><i class="fab fa-youtube"></i> Link do YouTube (opcional)</label>
-                    <input type="url" id="youtube" placeholder="Ex: https://www.youtube.com/watch?v=...">
-                </div>
-                
-                <button type="submit"><i class="fas fa-save"></i> Salvar Música</button>
-            </form>
-        </section>
-        
         <section class="list-section">
             <h2><i class="fas fa-list"></i> Músicas no Repertório</h2>
             
@@ -366,146 +257,122 @@
             </div>
             
             <div class="song-list" id="song-list">
-                <p id="no-songs-message" class="no-songs">Nenhuma música cadastrada ainda.</p>
-                <!-- As músicas serão inseridas aqui via JavaScript -->
+                <!-- ADICIONE SUAS MÚSICAS AQUI -->
+                
+                <!-- EXEMPLO 1 -->
+                <div class="song-item" data-title="Bohemian Rhapsody" data-artist="Queen" data-key="Bb" data-youtube="https://www.youtube.com/watch?v=fJ9rUzIMcZQ">
+                    <div class="song-title">Bohemian Rhapsody</div>
+                    <div class="song-details">
+                        <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
+                        <span class="artist">Queen</span>
+                        
+                        <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
+                        <span class="key">Bb</span>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=fJ9rUzIMcZQ" target="_blank" class="youtube-link">
+                        <i class="fab fa-youtube"></i> Assistir no YouTube
+                    </a>
+                </div>
+                
+                <!-- EXEMPLO 2 -->
+                <div class="song-item" data-title="Imagine" data-artist="John Lennon" data-key="C" data-youtube="https://www.youtube.com/watch?v=VOgFZfRVaww">
+                    <div class="song-title">Imagine</div>
+                    <div class="song-details">
+                        <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
+                        <span class="artist">John Lennon</span>
+                        
+                        <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
+                        <span class="key">C</span>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=VOgFZfRVaww" target="_blank" class="youtube-link">
+                        <i class="fab fa-youtube"></i> Assistir no YouTube
+                    </a>
+                </div>
+                
+                <!-- EXEMPLO 3 (sem YouTube) -->
+                <div class="song-item" data-title="Garota de Ipanema" data-artist="Tom Jobim" data-key="F#m">
+                    <div class="song-title">Garota de Ipanema</div>
+                    <div class="song-details">
+                        <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
+                        <span class="artist">Tom Jobim</span>
+                        
+                        <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
+                        <span class="key">F#m</span>
+                    </div>
+                </div>
+                
+                <!-- ADICIONE MAIS MÚSICAS AQUI SEGUINDO O PADRÃO -->
+                
+                <p id="no-songs-message" class="no-songs" style="display: none;">Nenhuma música encontrada.</p>
             </div>
         </section>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const musicForm = document.getElementById('music-form');
+            const searchInput = document.getElementById('search');
             const songList = document.getElementById('song-list');
             const noSongsMessage = document.getElementById('no-songs-message');
-            const searchInput = document.getElementById('search');
+            const songItems = document.querySelectorAll('.song-item');
             
-            // Carregar músicas do localStorage ao iniciar
-            let songs = JSON.parse(localStorage.getItem('songs')) || [];
-            renderSongs();
-            
-            // Adicionar nova música
-            musicForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const title = document.getElementById('title').value;
-                const artist = document.getElementById('artist').value;
-                const key = document.getElementById('key').value;
-                const youtube = document.getElementById('youtube').value;
-                
-                if (title && artist && key) {
-                    const newSong = {
-                        id: Date.now(), // ID único baseado no timestamp
-                        title,
-                        artist,
-                        key,
-                        youtube: youtube || null
-                    };
-                    
-                    songs.push(newSong);
-                    saveSongs();
-                    renderSongs();
-                    
-                    // Limpar formulário
-                    musicForm.reset();
-                }
-            });
+            // Mostrar mensagem se não houver músicas
+            if (songItems.length === 0) {
+                noSongsMessage.style.display = 'block';
+            } else {
+                noSongsMessage.style.display = 'none';
+            }
             
             // Filtrar músicas
             searchInput.addEventListener('input', function() {
-                renderSongs();
+                const searchTerm = searchInput.value.toLowerCase();
+                let visibleCount = 0;
+                
+                songItems.forEach(song => {
+                    const title = song.getAttribute('data-title').toLowerCase();
+                    const artist = song.getAttribute('data-artist').toLowerCase();
+                    const key = song.getAttribute('data-key').toLowerCase();
+                    
+                    if (title.includes(searchTerm) || artist.includes(searchTerm) || key.includes(searchTerm)) {
+                        song.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        song.style.display = 'none';
+                    }
+                });
+                
+                // Mostrar mensagem se nenhuma música for encontrada
+                if (visibleCount === 0) {
+                    noSongsMessage.style.display = 'block';
+                } else {
+                    noSongsMessage.style.display = 'none';
+                }
             });
             
-            // Salvar músicas no localStorage
-            function saveSongs() {
-                localStorage.setItem('songs', JSON.stringify(songs));
-            }
-            
-            // Renderizar a lista de músicas
-            function renderSongs() {
-                const searchTerm = searchInput.value.toLowerCase();
+            // Extrair dados dos atributos para elementos internos (para garantir consistência)
+            songItems.forEach(song => {
+                const title = song.getAttribute('data-title');
+                const artist = song.getAttribute('data-artist');
+                const key = song.getAttribute('data-key');
+                const youtube = song.getAttribute('data-youtube');
                 
-                // Filtrar músicas se houver termo de busca
-                const filteredSongs = searchTerm ? 
-                    songs.filter(song => 
-                        song.title.toLowerCase().includes(searchTerm) || 
-                        song.artist.toLowerCase().includes(searchTerm)
-                    ) : songs;
+                // Atualizar elementos internos com os dados dos atributos
+                const titleElement = song.querySelector('.song-title');
+                const artistElement = song.querySelector('.artist');
+                const keyElement = song.querySelector('.key');
+                const youtubeLink = song.querySelector('.youtube-link');
                 
-                if (filteredSongs.length === 0) {
-                    if (songs.length === 0) {
-                        noSongsMessage.textContent = 'Nenhuma música cadastrada ainda.';
-                    } else {
-                        noSongsMessage.textContent = 'Nenhuma música encontrada com esse termo.';
-                    }
-                    noSongsMessage.style.display = 'block';
-                    songList.innerHTML = '';
-                    songList.appendChild(noSongsMessage);
-                    return;
+                if (titleElement && title) titleElement.textContent = title;
+                if (artistElement && artist) artistElement.textContent = artist;
+                if (keyElement && key) keyElement.textContent = key;
+                
+                // Se não há link do YouTube, remover o botão
+                if ((!youtube || youtube === '') && youtubeLink) {
+                    youtubeLink.remove();
+                } else if (youtubeLink) {
+                    youtubeLink.href = youtube;
                 }
-                
-                noSongsMessage.style.display = 'none';
-                songList.innerHTML = '';
-                
-                filteredSongs.forEach(song => {
-                    const songElement = document.createElement('div');
-                    songElement.className = 'song-item';
-                    
-                    songElement.innerHTML = `
-                        <div class="song-title">${song.title}</div>
-                        <div class="song-details">
-                            <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                            <span>${song.artist}</span>
-                            
-                            <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                            <span>${song.key}</span>
-                        </div>
-                        ${song.youtube ? `
-                            <a href="${song.youtube}" target="_blank" class="youtube-link">
-                                <i class="fab fa-youtube"></i> Assistir no YouTube
-                            </a>
-                        ` : ''}
-                        <div class="actions">
-                            <button class="btn-edit" onclick="editSong(${song.id})">
-                                <i class="fas fa-edit"></i> Editar
-                            </button>
-                            <button class="btn-delete" onclick="deleteSong(${song.id})">
-                                <i class="fas fa-trash"></i> Excluir
-                            </button>
-                        </div>
-                    `;
-                    
-                    songList.appendChild(songElement);
-                });
-            }
-            
-            // Editar música (função global para acesso pelo onclick)
-            window.editSong = function(id) {
-                const song = songs.find(song => song.id === id);
-                
-                if (song) {
-                    document.getElementById('title').value = song.title;
-                    document.getElementById('artist').value = song.artist;
-                    document.getElementById('key').value = song.key;
-                    document.getElementById('youtube').value = song.youtube || '';
-                    
-                    // Remover a música da lista para edição
-                    songs = songs.filter(song => song.id !== id);
-                    saveSongs();
-                    renderSongs();
-                }
-            };
-            
-            // Excluir música (função global para acesso pelo onclick)
-            window.deleteSong = function(id) {
-                if (confirm('Tem certeza que deseja excluir esta música?')) {
-                    songs = songs.filter(song => song.id !== id);
-                    saveSongs();
-                    renderSongs();
-                }
-            };
+            });
         });
     </script>
 </body>
 </html>
-
-
