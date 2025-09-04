@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Repertório Musical</title>
+    <title>Repertório André de Paula</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -55,21 +55,13 @@
             padding: 0 1.5rem;
         }
         
-        .instructions {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
-            margin-bottom: 2rem;
-        }
-        
         .list-section {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
         }
         
         h2 {
@@ -84,28 +76,6 @@
         
         h2 i {
             color: #b21f1f;
-        }
-        
-        h3 {
-            color: #1a2a6c;
-            margin: 1.5rem 0 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        pre {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1rem 0;
-            border-left: 4px solid #1a2a6c;
-        }
-        
-        code {
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
         }
         
         .song-list {
@@ -148,8 +118,17 @@
             gap: 0.5rem;
         }
         
+        .song-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
         .youtube-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: #ff0000;
             color: white;
             padding: 0.5rem 1rem;
@@ -157,12 +136,12 @@
             text-decoration: none;
             font-weight: 600;
             transition: background 0.3s;
-            margin-top: 0.5rem;
         }
         
         .youtube-link:hover {
             background: #cc0000;
         }
+        
         .lyrics-link {
             display: inline-flex;
             align-items: center;
@@ -201,7 +180,7 @@
         }
         
         .search-box input {
-            padding-left: 3.5rem;
+            padding-left: 2.5rem;
             width: 100%;
             padding: 0.9rem;
             border: 2px solid #ddd;
@@ -215,9 +194,35 @@
             outline: none;
         }
         
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .tom-filter {
+            margin-bottom: 1.5rem;
+        }
+        
+        .tom-filter select {
+            padding: 0.5rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
         @media (max-width: 768px) {
             .song-details {
                 grid-template-columns: 1fr;
+            }
+            
+            .song-links {
+                flex-direction: column;
+                align-items: flex-start;
             }
             
             header {
@@ -228,9 +233,9 @@
                 font-size: 1.8rem;
             }
             
-            pre {
-                overflow-x: auto;
-                font-size: 0.8rem;
+            .stats {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
         
@@ -259,838 +264,439 @@
             <i class="fas fa-music"></i>
             <h1>Repertório André de Paula</h1>
         </div>
-        
-    </header>
+           </header>
     
     <div class="container">
-                
         <section class="list-section">
             <h2><i class="fas fa-list"></i> Músicas no Repertório</h2>
             
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="search" placeholder="Buscar músicas...">
+                <input type="text" id="search" placeholder="Buscar por música, artista ou tom...">
+            </div>
+            
+            <div class="tom-filter">
+                <label for="tom-filter">Filtrar por tom:</label>
+                <select id="tom-filter">
+                    <option value="">Todos os tons</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="Bb">Bb</option>
+                    <option value="Eb">Eb</option>
+                    <option value="F#">F#</option>
+                    <option value="Cm">Cm</option>
+                    <option value="B5(9)">B5(9)</option>
+                </select>
             </div>
             
             <div class="song-list" id="song-list">
-                <!-- ADICIONE SUAS MÚSICAS AQUI -->
-                
-                <!-- EXEMPLO 1 -->
-                <div class="song-item" data-title="Raridade" data-artist="Anderson Freire" data-key="D" data-youtube="https://youtu.be/WdYO0JtOm0A?si=s3Fiu6Kit_X8QgB0">
-                    <div class="song-title">Raridade</div>
-                    <div class="song-details">
-                        <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                        <span class="artist">Anderson Freire</span>
-                        
-                        <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                        <span class="key">D</span>
-                    </div>
-                    <a href="https://youtu.be/WdYO0JtOm0A?si=s3Fiu6Kit_X8QgB0" target="_blank" class="youtube-link">
-                        <i class="fab fa-youtube"></i> Assistir no YouTube
-                    </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-                </div>
-                
-                <!-- EXEMPLO 2 -->
-                <div class="songs-grid">
-            <!-- Estrutura para cada música -->
-            <div class="song-item" data-title="Algo Novo (feat. Lukas Agustinho) (Ao Vivo)" data-artist="Kemuel" data-key="D" data-youtube="https://youtu.be/wWU1Bn6wy9o?si=_saQFkJFPw0DmnjZ">
-                <div class="song-title">Algo Novo (feat. Lukas Agustinho) (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Kemuel</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">D</span>
-                </div>
-                <a href="https://youtu.be/wWU1Bn6wy9o?si=_saQFkJFPw0DmnjZ" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
+                <!-- As músicas serão carregadas via JavaScript -->
             </div>
-
-            <div class="song-item" data-title="1000 Graus (Live)" data-artist="Renascer Praise" data-key="C" data-youtube="https://youtu.be/QTC7_DVENZA?si=ZYdIBhN8fiHgp8XV">
-                <div class="song-title">1000 Graus (Live)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Renascer Praise</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">C</span>
-                </div>
-                <a href="https://youtu.be/QTC7_DVENZA?si=ZYdIBhN8fiHgp8XV" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="A Bênção" data-artist="Gabriel Guedes de Almeida" data-key="Bb" data-youtube="https://youtu.be/v8gaG2ed01I?si=ISv01L8bx6TgGTNK">
-                <div class="song-title">A Bênção</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Gabriel Guedes de Almeida</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">Bb</span>
-                </div>
-                <a href="https://youtu.be/v8gaG2ed01I?si=ISv01L8bx6TgGTNK" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Agradeço (Ao Vivo)" data-artist="Paulo Cesar Baruk" data-key="A" data-youtube="https://youtu.be/EGfPwMFxMxU?si=KS0TGtjmic4V4RpX">
-                <div class="song-title">Agradeço (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Paulo Cesar Baruk</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">A</span>
-                </div>
-                <a href="https://youtu.be/EGfPwMFxMxU?si=KS0TGtjmic4V4RpX" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Bondade de Deus" data-artist="Isaías Saad" data-key="D" data-youtube="https://youtu.be/mZ9yZYo9Mmk?si=VEoU5Ct54zirfjsN">
-                <div class="song-title">Bondade de Deus</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Isaías Saad</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">D</span>
-                </div>
-                <a href="https://youtu.be/mZ9yZYo9Mmk?si=VEoU5Ct54zirfjsN" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Clamo Jesus" data-artist="Paulo Cesar Baruk" data-key="E" data-youtube="https://youtu.be/ye9caqETC0A?si=oOk7i0u5B5BlB-L8">
-                <div class="song-title">Clamo Jesus</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Paulo Cesar Baruk</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">E</span>
-                </div>
-                <a href="https://youtu.be/ye9caqETC0A?si=oOk7i0u5B5BlB-L8" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Cria em mim" data-artist="Comunidade Evangélica de Nilópolis" data-key="C" data-youtube="https://youtu.be/6XQrYQujlbs?si=-yw2l8ndcjKcDs15">
-                <div class="song-title">Cria em mim</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Comunidade Evangélica de Nilópolis</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">C</span>
-                </div>
-                <a href="https://youtu.be/6XQrYQujlbs?si=-yw2l8ndcjKcDs15" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Cruz (Ao Vivo)" data-artist="Trazendo a Arca" data-key="D" data-youtube="https://youtu.be/UOjL_VvFN7A?si=0mGe5q4ZicJC1eeR">
-                <div class="song-title">Cruz (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Trazendo a Arca</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">D</span>
-                </div>
-                <a href="https://youtu.be/UOjL_VvFN7A?si=0mGe5q4ZicJC1eeR" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Ele Vem (Ao Vivo)" data-artist="Gabriel Guedes de Almeida" data-key="A" data-youtube="https://youtu.be/YudXB8MZRTs?si=_wpmv7zdQpVP6d5R">
-                <div class="song-title">Ele Vem (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Gabriel Guedes de Almeida</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">A</span>
-                </div>
-                <a href="https://youtu.be/YudXB8MZRTs?si=_wpmv7zdQpVP6d5R" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Em espírito em verdade" data-artist="Lukas Agustinho" data-key="D" data-youtube="https://youtu.be/p4yOdTswupQ?si=JytakReiehBB40Mr">
-                <div class="song-title">Em espírito em verdade</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Lukas Agustinho</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">D</span>
-                </div>
-                <a href="https://youtu.be/p4yOdTswupQ?si=JytakReiehBB40Mr" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Em espírito em verdade" data-artist="Tom moderado" data-key="A" data-youtube="https://youtu.be/g6MsbSN6Ylc?si=uqJ9bd9BC92GAai7">
-                <div class="song-title">Em espírito em verdade</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Tom moderado</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">A</span>
-                </div>
-                <a href="https://youtu.be/g6MsbSN6Ylc?si=uqJ9bd9BC92GAai7" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Estamos Todos Prontos (Ao Vivo)" data-artist="Ministério Pra Tua Glória" data-key="B" data-youtube="https://youtu.be/Q26qfwKTWtI?si=mUEEN3dy8lgreB4O">
-                <div class="song-title">Estamos Todos Prontos (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Ministério Pra Tua Glória</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">B</span>
-                </div>
-                <a href="https://youtu.be/Q26qfwKTWtI?si=mUEEN3dy8lgreB4O" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Galileu (Ao Vivo)" data-artist="Fernandinho" data-key="C" data-youtube="https://youtu.be/D1GDDvrfnfc?si=3ijH4VuHMGxFfeu0">
-                <div class="song-title">Galileu (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Fernandinho</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">C</span>
-                </div>
-                <a href="https://youtu.be/D1GDDvrfnfc?si=3ijH4VuHMGxFfeu0" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Grande é o Senhor (Ao Vivo)" data-artist="Adhemar De Campos" data-key="A" data-youtube="https://youtu.be/4_rv9Jmgc78?si=NeF7jOElMqJRmtuw">
-                <div class="song-title">Grande é o Senhor (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Adhemar De Campos</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">A</span>
-                </div>
-                <a href="https://youtu.be/4_rv9Jmgc78?si=NeF7jOElMqJRmtuw" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Gratidão (Ao Vivo)" data-artist="Felipe Rodrigues" data-key="D" data-youtube="https://youtu.be/-oH04gqi0xI?si=46CNSoUqiaDyvc0X">
-                <div class="song-title">Gratidão (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Felipe Rodrigues</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">D</span>
-                </div>
-                <a href="https://youtu.be/-oH04gqi0xI?si=46CNSoUqiaDyvc0X" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Improvável (Ao Vivo)" data-artist="Davi Passamani" data-key="F" data-youtube="https://youtu.be/-fzNuSEb9YU?si=yHJF37YcQ52BEsGl">
-                <div class="song-title">Improvável (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Davi Passamani</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">F</span>
-                </div>
-                <a href="https://youtu.be/-fzNuSEb9YU?si=yHJF37YcQ52BEsGl" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Isaías 9 (Ao Vivo)" data-artist="Rodolfo Abrantes" data-key="C" data-youtube="https://youtu.be/XPxUfGfWtRA?si=fQBZrwrzpe3sfCgv">
-                <div class="song-title">Isaías 9 (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Rodolfo Abrantes</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">C</span>
-                </div>
-                <a href="https://youtu.be/XPxUfGfWtRA?si=fQBZrwrzpe3sfCgv" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Jesus Em Tua Presença (Ao Vivo)" data-artist="MORADA" data-key="E" data-youtube="https://youtu.be/aMpM68cb5MY?si=yjJ4CNa2QUuacJWe">
-                <div class="song-title">Jesus Em Tua Presença (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">MORADA</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">E</span>
-                </div>
-                <a href="https://youtu.be/aMpM68cb5MY?si=yjJ4CNa2QUuacJWe" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Jesus O Plano Perfeito" data-artist="Renascer Praise" data-key="E" data-youtube="https://youtu.be/OtDvlKRgJrc?si=Zj1GyRrCZV0RPnl0">
-                <div class="song-title">Jesus O Plano Perfeito</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Renascer Praise</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">E</span>
-                </div>
-                <a href="https://youtu.be/OtDvlKRgJrc?si=Zj1GyRrCZV0RPnl0" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Me Ama (Ao Vivo)" data-artist="Juliano son" data-key="B5(9)" data-youtube="https://youtu.be/xGLrd9wwHbU?si=wetd0S4OqfU_2N6t">
-                <div class="song-title">Me Ama (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Juliano son</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">B5(9)</span>
-                </div>
-                <a href="https://youtu.be/xGLrd9wwHbU?si=wetd0S4OqfU_2N6t" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Nada Além do Sangue (Ao Vivo)" data-artist="Fernandinho" data-key="A" data-youtube="https://youtu.be/csPaNdL6ndA?si=PaGengHuy5Pcpblo">
-                <div class="song-title">Nada Além do Sangue (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Fernandinho</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">A</span>
-                </div>
-                <a href="https://youtu.be/csPaNdL6ndA?si=PaGengHuy5Pcpblo" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="O Grande Eu Sou (Ao Vivo)" data-artist="Nazareno Central Music" data-key="D" data-youtube="https://youtu.be/CwcYBFyAcj8?si=12AF4eW2lPVKdSNP">
-                <div class="song-title">O Grande Eu Sou (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Nazareno Central Music</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">D</span>
-                </div>
-                <a href="https://youtu.be/CwcYBFyAcj8?si=12AF4eW2lPVKdSNP" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="O Nosso General É Cristo (For The Lord Is Marching On) (Ao Vivo)" data-artist="Best Song Gospel" data-key="Cm" data-youtube="https://youtu.be/JgX5ccXNtAU?si=DPuFWlhlxvYdMMSd">
-                <div class="song-title">O Nosso General É Cristo (For The Lord Is Marching On) (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Best Song Gospel</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">Cm</span>
-                </div>
-                <a href="https://youtu.be/JgX5ccXNtAU?si=DPuFWlhlxvYdMMSd" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Oleiro" data-artist="Casa do Oleiro Adoração" data-key="F" data-youtube="https://youtu.be/GBgzyWWAk-s?si=XG6x6hMrqGI4UFeq">
-                <div class="song-title">Oleiro</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Casa do Oleiro Adoração</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">F</span>
-                </div>
-                <a href="https://youtu.be/GBgzyWWAk-s?si=XG6x6hMrqGI4UFeq" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Os Planos de Deus (Ao Vivo)" data-artist="Samuel Messias" data-key="C" data-youtube="https://youtu.be/6dp-zcoy_kM?si=uu8bq14u3BnrKcus">
-                <div class="song-title">Os Planos de Deus (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Samuel Messias</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">C</span>
-                </div>
-                <a href="https://youtu.be/6dp-zcoy_kM?si=uu8bq14u3BnrKcus" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Ousado Amor" data-artist="Isaías Saad" data-key="F#" data-youtube="https://youtu.be/wSKKEAnLTDw?si=po7X0AOW1-ZREf34">
-                <div class="song-title">Ousado Amor</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Isaías Saad</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">F#</span>
-                </div>
-                <a href="https://youtu.be/wSKKEAnLTDw?si=po7X0AOW1-ZREf34" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Pelo Sangue (ao vivo)" data-artist="Renascer Praise" data-key="G" data-youtube="https://youtu.be/voVCOqZ59og?si=3m9UnEOAzgmpfFII">
-                <div class="song-title">Pelo Sangue (ao vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Renascer Praise</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">G</span>
-                </div>
-                <a href="https://youtu.be/voVCOqZ59og?si=3m9UnEOAzgmpfFII" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Pode Morar Aqui (feat. Alessandro Vilas Boas) (Ao Vivo)" data-artist="Theo Rubia" data-key="Eb" data-youtube="https://youtu.be/-zLG1DvLsEs?si=q6bZUziBzhIzs3b1">
-                <div class="song-title">Pode Morar Aqui (feat. Alessandro Vilas Boas) (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Theo Rubia</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">Eb</span>
-                </div>
-                <a href="https://youtu.be/-zLG1DvLsEs?si=q6bZUziBzhIzs3b1" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Pra Sempre (Ao Vivo)" data-artist="Fernandinho" data-key="C" data-youtube="https://youtu.be/DZvBlrJsFag?si=5JgrS0XSvU1qZ1hW">
-                <div class="song-title">Pra Sempre (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Fernandinho</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">C</span>
-                </div>
-                <a href="https://youtu.be/DZvBlrJsFag?si=5JgrS0XSvU1qZ1hW" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Santo Pra Sempre (Ao Vivo)" data-artist="Fernandinho" data-key="C" data-youtube="https://youtu.be/u2FOGNSJfX8?si=yZGhCpFzsAdrlYXg">
-                <div class="song-title">Santo Pra Sempre (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Fernandinho</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">C</span>
-                </div>
-                <a href="https://youtu.be/u2FOGNSJfX8?si=yZGhCpFzsAdrlYXg" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Serás Sempre Deus" data-artist="Trazendo a Arca" data-key="G" data-youtube="https://youtu.be/G0GGlF-2bME?si=1NBvJoX0YirNtHBX">
-                <div class="song-title">Serás Sempre Deus</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Trazendo a Arca</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">G</span>
-                </div>
-                <a href="https://youtu.be/G0GGlF-2bME?si=1NBvJoX0YirNtHBX" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Te Agradeço (Ao Vivo)" data-artist="Diante Do Trono" data-key="D" data-youtube="https://youtu.be/Kw3NFUU6soU?si=rBZKD9Itu6SlIw9e">
-                <div class="song-title">Te Agradeço (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Diante Do Trono</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">D</span>
-                </div>
-                <a href="https://youtu.be/Kw3NFUU6soU?si=rBZKD9Itu6SlIw9e" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Tu és + Águas Purificadoras (Ao vivo)" data-artist="fhop music" data-key="D" data-youtube="https://youtu.be/YXnQ02HYB1w?si=eVxrkz3jRpFYtDU3">
-                <div class="song-title">Tu és + Águas Purificadoras (Ao vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">fhop music</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">D</span>
-                </div>
-                <a href="https://youtu.be/YXnQ02HYB1w?si=eVxrkz3jRpFYtDU3" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/anderson-freire/raridade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-<-- até aqui-->
-            <div class="song-item" data-title="Vem Cantar Louvores" data-artist="Brás Adoração" data-key="G" data-youtube="https://youtu.be/h4YWqwLlBv4?si=rLqokTsTxRVWit4G">
-                <div class="song-title">Vem Cantar Louvores</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Brás Adoração</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">G</span>
-                </div>
-                <a href="https://youtu.be/h4YWqwLlBv4?si=rLqokTsTxRVWit4G" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/bras-adoracao/vem-cantar-louvores/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Vitorioso És (Ao Vivo)" data-artist="Gabriel Guedes de Almeida" data-key="E" data-youtube="https://youtu.be/k7tGP-vidwc?si=mHv4YWvxIQjAB_-n">
-                <div class="song-title">Vitorioso És (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Gabriel Guedes de Almeida</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">E</span>
-                </div>
-                <a href="https://youtu.be/k7tGP-vidwc?si=mHv4YWvxIQjAB_-n" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/gabriel-guedes/vitorioso-es/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Vou Deixar na Cruz (Ao Vivo)" data-artist="Kleber Lucas" data-key="F" data-youtube="https://youtu.be/mF7l0O2UqGA?si=xOmXnMtxRT2Q3guA">
-                <div class="song-title">Vou Deixar na Cruz (Ao Vivo)</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Kleber Lucas</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">F</span>
-                </div>
-                <a href="https://youtu.be/mF7l0O2UqGA?si=xOmXnMtxRT2Q3guA" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/kleber-lucas/vou-deixar-na-cruz/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Tudo é Perda" data-artist="Felipe Rodrigues" data-key="B" data-youtube="https://youtu.be/qxzQR5uwWsk?si=46wC1VvyPLYCBwcG">
-                <div class="song-title">Tudo é Perda</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Felipe Rodrigues</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">B</span>
-                </div>
-                <a href="https://youtu.be/qxzQR5uwWsk?si=46wC1VvyPLYCBwcG" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/felipe-rodrigues/tudo-e-perda/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Furioso Oceano" data-artist="Jhonas Serra" data-key="C" data-youtube="https://youtu.be/bmAwpcTyKyo?si=NTTnmBsdhPRq0X_C">
-                <div class="song-title">Furioso Oceano</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Jhonas Serra</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">C</span>
-                </div>
-                <a href="https://youtu.be/bmAwpcTyKyo?si=NTTnmBsdhPRq0X_C" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/jhonas-serra/furioso-oceano/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Yeshua" data-artist="Felipe Salvaon" data-key="E" data-youtube="https://youtu.be/fTW--mAyZTg?si=ED8R4ixejSknP96_">
-                <div class="song-title">Yeshua</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Felipe Salvaon</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">E</span>
-                </div>
-                <a href="https://youtu.be/fTW--mAyZTg?si=ED8R4ixejSknP96_" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/jose-augusto-five-music/yeshua/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-
-            <div class="song-item" data-title="Saudade" data-artist="Felipe Rodrigues" data-key="G" data-youtube="https://youtu.be/23kl8jSXRok?si=CZ0Lv0E868KEFCiN">
-                <div class="song-title">Saudade</div>
-                <div class="song-details">
-                    <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                    <span class="artist">Felipe Rodrigues</span>
-                    
-                    <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                    <span class="key">G</span>
-                </div>
-                <a href="https://youtu.be/23kl8jSXRok?si=CZ0Lv0E868KEFCiN" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/felipe-rodrigues/saudade/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-            </div>
-        </div>
-            <div class="song-item" data-title="Basta Querer" data-artist="Pe Marcelo Rossi" data-key="G" data-youtube="https://youtu.be/BPdRNwFoOJM?si=asVhCqwHNUQVotOW">
-                    <div class="song-title">Basta Querer</div>
-                    <div class="song-details">
-                        <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                        <span class="artist">Pe Marcelo Rossi</span>
-                        
-                        <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                        <span class="key">G</span>
-                    </div>
-                    <a href="https://youtu.be/BPdRNwFoOJM?si=asVhCqwHNUQVotOW" target="_blank" class="youtube-link">
-                        <i class="fab fa-youtube"></i> Assistir no YouTube
-                    </a>
-                 </a>
-                    <a href="https://www.letras.mus.br/padre-marcelo-rossi/47894/" target="_blank" class="lyrics-link">
-            <i class="fas fa-file-alt"></i> Ver Letra </a>
-                </div>
-                       <!--  
-                <div class="song-item" data-title="Imagine" data-artist="John Lennon" data-key="C" data-youtube="https://www.youtube.com/watch?v=VOgFZfRVaww">
-                    <div class="song-title">Imagine</div>
-                    <div class="song-details">
-                        <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
-                        <span class="artist">John Lennon</span>
-                        
-                        <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
-                        <span class="key">C</span>
-                    </div>
-                    <a href="https://www.youtube.com/watch?v=VOgFZfRVaww" target="_blank" class="youtube-link">
-                        <i class="fab fa-youtube"></i> Assistir no YouTube
-                    </a>
-                </div> -->
-                                
-                <!-- ADICIONE MAIS MÚSICAS AQUI SEGUINDO O PADRÃO -->
-                
-                <p id="no-songs-message" class="no-songs" style="display: none;">Nenhuma música encontrada.</p>
+            
+            <div class="stats" id="stats">
+                <span>Total de músicas: <span id="total-songs">0</span></span>
+                <span>Músicas filtradas: <span id="filtered-songs">0</span></span>
             </div>
         </section>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('search');
             const songList = document.getElementById('song-list');
-            const noSongsMessage = document.getElementById('no-songs-message');
-            const songItems = document.querySelectorAll('.song-item');
+            const searchInput = document.getElementById('search');
+            const tomFilter = document.getElementById('tom-filter');
+            const totalSongsElement = document.getElementById('total-songs');
+            const filteredSongsElement = document.getElementById('filtered-songs');
             
-            // Mostrar mensagem se não houver músicas
-            if (songItems.length === 0) {
-                noSongsMessage.style.display = 'block';
-            } else {
-                noSongsMessage.style.display = 'none';
-            }
+            // Dados das músicas do CSV
+            const songs = [
+                {
+                    title: "Raridade",
+                    artist: "Anderson Freire",
+                    key: "D",
+                    youtube: "https://youtu.be/WdYO0JtOm0A?si=s3Fiu6Kit_X8QgB0",
+                    lyrics: "https://www.letras.mus.br/anderson-freire/raridade/"
+                },
+                {
+                    title: "Algo Novo (feat. Lukas Agustinho) (Ao Vivo)",
+                    artist: "Kemuel",
+                    key: "D",
+                    youtube: "https://youtu.be/wWU1Bn6wy9o?si=_saQFkJFPw0DmnjZ",
+                    lyrics: "https://www.letras.mus.br/coral-kemuel/algo-novo-part-lukas-agustinho/"
+                },
+                {
+                    title: "1000 Graus (Live)",
+                    artist: "Renascer Praise",
+                    key: "C",
+                    youtube: "https://youtu.be/QTC7_DVENZA?si=ZYdIBhN8fiHgp8XV",
+                    lyrics: "https://www.letras.mus.br/renascer-praise/1000-graus-renascer-praise-18/"
+                },
+                {
+                    title: "A Bênção",
+                    artist: "Gabriel Guedes de Almeida",
+                    key: "Bb",
+                    youtube: "https://youtu.be/v8gaG2ed01I?si=ISv01L8bx6TgGTNK",
+                    lyrics: "https://www.letras.mus.br/gabriel-guedes/a-bencao-part-nivea-soares/"
+                },
+                {
+                    title: "Agradeço (Ao Vivo)",
+                    artist: "Paulo Cesar Baruk",
+                    key: "A",
+                    youtube: "https://youtu.be/EGfPwMFxMxU?si=KS0TGtjmic4V4RpX",
+                    lyrics: "https://www.letras.mus.br/paulo-cesar-baruk/agradeco/"
+                },
+                {
+                    title: "Bondade de Deus",
+                    artist: "Isaías Saad",
+                    key: "D",
+                    youtube: "https://youtu.be/mZ9yZYo9Mmk?si=VEoU5Ct54zirfjsN",
+                    lyrics: "https://www.letras.mus.br/isaias-saad/bondade-de-deus/"
+                },
+                {
+                    title: "Clamo Jesus",
+                    artist: "Paulo Cesar Baruk",
+                    key: "E",
+                    youtube: "https://youtu.be/ye9caqETC0A?si=oOk7i0u5B5BlB-L8",
+                    lyrics: "https://www.letras.mus.br/paulo-cesar-baruk/clamo-jesus/"
+                },
+                {
+                    title: "Cria em mim",
+                    artist: "Comunidade Evangélica de Nilópolis",
+                    key: "C",
+                    youtube: "https://youtu.be/6XQrYQujlbs?si=-yw2l8ndcjKcDs15",
+                    lyrics: "https://www.letras.mus.br/comunidade-de-nilopolis/189942/"
+                },
+                {
+                    title: "Cruz (Ao Vivo)",
+                    artist: "Trazendo a Arca",
+                    key: "D",
+                    youtube: "https://youtu.be/UOjL_VvFN7A?si=0mGe5q4ZicJC1eeR",
+                    lyrics: "https://www.letras.mus.br/trazendo-arca/1503311/"
+                },
+                {
+                    title: "Ele Vem (Ao Vivo)",
+                    artist: "Gabriel Guedes de Almeida",
+                    key: "A",
+                    youtube: "https://youtu.be/YudXB8MZRTs?si=_wpmv7zdQpVP6d5R",
+                    lyrics: "https://www.letras.mus.br/gabriel-guedes/ele-vem/"
+                },
+                {
+                    title: "Em espírito em verdade",
+                    artist: "Lukas Agustinho",
+                    key: "D",
+                    youtube: "https://youtu.be/p4yOdTswupQ?si=JytakReiehBB40Mr",
+                    lyrics: "https://www.letras.mus.br/lukas-agustinho/em-espirito-em-verdade/"
+                },
+                {
+                    title: "Em espírito em verdade",
+                    artist: "Tom moderado",
+                    key: "D",
+                    youtube: "https://youtu.be/g6MsbSN6Ylc?si=uqJ9bd9BC92GAai7",
+                    lyrics: "https://www.letras.mus.br/ministerio-koinonya-de-louvor/em-espirito-em-verdade/"
+                },
+                {
+                    title: "Estamos Todos Prontos (Ao Vivo)",
+                    artist: "Ministério Pra Tua Glória",
+                    key: "B",
+                    youtube: "https://youtu.be/Q26qfwKTWtI?si=mUEEN3dy8lgreB4O",
+                    lyrics: "https://www.letras.mus.br/pra-tua-gloria/estamos-todos-prontos/"
+                },
+                {
+                    title: "Galileu (Ao Vivo)",
+                    artist: "Fernandinho",
+                    key: "C",
+                    youtube: "https://youtu.be/D1GDDvrfnfc?si=3ijH4VuHMGxFfeu0",
+                    lyrics: "https://www.letras.mus.br/fernandinho/galileu/"
+                },
+                {
+                    title: "Grande é o Senhor (Ao Vivo)",
+                    artist: "Adhemar De Campos",
+                    key: "A",
+                    youtube: "https://youtu.be/4_rv9Jmgc78?si=NeF7jOElMqJRmtuw",
+                    lyrics: "https://www.letras.mus.br/nivea-soares/1094801/"
+                },
+                {
+                    title: "Gratidão (Ao Vivo)",
+                    artist: "Felipe Rodrigues",
+                    key: "D",
+                    youtube: "https://youtu.be/-oH04gqi0xI?si=46CNSoUqiaDyvc0X",
+                    lyrics: "https://www.letras.mus.br/felipe-rodrigues/gratidao/"
+                },
+                {
+                    title: "Improvável (Ao Vivo)",
+                    artist: "Davi Passamani",
+                    key: "F",
+                    youtube: "https://youtu.be/-fzNuSEb9YU?si=yHJF37YcQ52BEsGl",
+                    lyrics: "https://www.letras.mus.br/davi-passamani/improvavel/"
+                },
+                {
+                    title: "Isaías 9 (Ao Vivo)",
+                    artist: "Rodolfo Abrantes",
+                    key: "C",
+                    youtube: "https://youtu.be/XPxUfGfWtRA?si=fQBZrwrzpe3sfCgv",
+                    lyrics: "https://www.letras.mus.br/rodolfo-abrantes/462838/"
+                },
+                {
+                    title: "Jesus Em Tua Presença (Ao Vivo)",
+                    artist: "MORADA",
+                    key: "E",
+                    youtube: "https://youtu.be/aMpM68cb5MY?si=yjJ4CNa2QUuacJWe",
+                    lyrics: "https://www.letras.mus.br/ministerio-morada/jesus-em-tua-presenca/"
+                },
+                {
+                    title: "Jesus O Plano Perfeito",
+                    artist: "Renascer Praise",
+                    key: "E",
+                    youtube: "https://youtu.be/OtDvlKRgJrc?si=Zj1GyRrCZV0RPnl0",
+                    lyrics: "https://www.letras.mus.br/renascer-praise/plano-perfeito/"
+                },
+                {
+                    title: "Me Ama (Ao Vivo)",
+                    artist: "Juliano son",
+                    key: "B5(9)",
+                    youtube: "https://youtu.be/xGLrd9wwHbU?si=wetd0S4OqfU_2N6t",
+                    lyrics: "https://www.letras.mus.br/juliano-son/ele-me-ama/"
+                },
+                {
+                    title: "Nada Além do Sangue (Ao Vivo)",
+                    artist: "Fernandinho",
+                    key: "A",
+                    youtube: "https://youtu.be/csPaNdL6ndA?si=PaGengHuy5Pcpblo",
+                    lyrics: "https://www.letras.mus.br/fernandinho/1025731/"
+                },
+                {
+                    title: "O Grande Eu Sou (Ao Vivo)",
+                    artist: "Nazareno Central Music",
+                    key: "D",
+                    youtube: "https://youtu.be/CwcYBFyAcj8?si=12AF4eW2lPVKdSNP",
+                    lyrics: "https://www.letras.mus.br/nazareno-central-music/o-grande-eu-sou-great-i-am/"
+                },
+                {
+                    title: "O Nosso General É Cristo (For The Lord Is Marching On) (Ao Vivo)",
+                    artist: "Best Song Gospel",
+                    key: "Cm",
+                    youtube: "https://youtu.be/JgX5ccXNtAU?si=DPuFWlhlxvYdMMSd",
+                    lyrics: "https://www.letras.mus.br/adhemar-de-campos/721666/"
+                },
+                {
+                    title: "Oleiro",
+                    artist: "Casa do Oleiro Adoração",
+                    key: "F",
+                    youtube: "https://youtu.be/GBgzyWWAk-s?si=XG6x6hMrqGI4UFeq",
+                    lyrics: "https://www.letras.mus.br/casa-do-oleiro-adoracao/oleiro/"
+                },
+                {
+                    title: "Os Planos de Deus (Ao Vivo)",
+                    artist: "Samuel Messias",
+                    key: "C",
+                    youtube: "https://youtu.be/6dp-zcoy_kM?si=uu8bq14u3BnrKcus",
+                    lyrics: "https://www.letras.mus.br/samuel-messias/os-planos-de-deus-barquinho/"
+                },
+                {
+                    title: "Ousado Amor",
+                    artist: "Isaías Saad",
+                    key: "F#",
+                    youtube: "https://youtu.be/wSKKEAnLTDw?si=po7X0AOW1-ZREf34",
+                    lyrics: "https://www.letras.mus.br/isaias-saad/ousado-amor/"
+                },
+                {
+                    title: "Pelo Sangue (ao vivo)",
+                    artist: "Renascer Praise",
+                    key: "G",
+                    youtube: "https://youtu.be/voVCOqZ59og?si=3m9UnEOAzgmpfFII",
+                    lyrics: "https://www.letras.mus.br/renascer-praise/o-sangue-de-jesus/"
+                },
+                {
+                    title: "Pode Morar Aqui (feat. Alessandro Vilas Boas) (Ao Vivo)",
+                    artist: "Theo Rubia",
+                    key: "Eb",
+                    youtube: "https://youtu.be/-zLG1DvLsEs?si=q6bZUziBzhIzs3b1",
+                    lyrics: "https://www.letras.mus.br/theo-rubia/pode-morar-aqui/"
+                },
+                {
+                    title: "Pra Sempre (Ao Vivo)",
+                    artist: "Fernandinho",
+                    key: "C",
+                    youtube: "https://youtu.be/DZvBlrJsFag?si=5JgrS0XSvU1qZ1hW",
+                    lyrics: "https://www.letras.mus.br/fernandinho/pra-sempre/"
+                },
+                {
+                    title: "Santo Pra Sempre (Ao Vivo)",
+                    artist: "Fernandinho",
+                    key: "C",
+                    youtube: "https://youtu.be/u2FOGNSJfX8?si=yZGhCpFzsAdrlYXg",
+                    lyrics: "https://www.letras.mus.br/fernandinho/santo-pra-sempre/"
+                },
+                {
+                    title: "Serás Sempre Deus",
+                    artist: "Trazendo a Arca",
+                    key: "G",
+                    youtube: "https://youtu.be/G0GGlF-2bME?si=1NBvJoX0YirNtHBX",
+                    lyrics: "https://www.letras.mus.br/trazendo-arca/1502382/"
+                },
+                {
+                    title: "Te Agradeço (Ao Vivo)",
+                    artist: "Diante Do Trono",
+                    key: "G",
+                    youtube: "https://youtu.be/Kw3NFUU6soU?si=rBZKD9Itu6SlIw9e",
+                    lyrics: "https://www.letras.mus.br/diante-do-trono/432327/"
+                },
+                {
+                    title: "Tu és + Águas Purificadoras (Ao vivo)",
+                    artist: "fhop music",
+                    key: "D",
+                    youtube: "https://youtu.be/YXnQ02HYB1w?si=eVxrkz3jRpFYtDU3",
+                    lyrics: "https://www.letras.mus.br/florianopolis-house-of-prayer/tu-es/"
+                },
+                {
+                    title: "Vem Cantar Louvores",
+                    artist: "Brás Adoração",
+                    key: "G",
+                    youtube: "https://youtu.be/h4YWqwLlBv4?si=rLqokTsTxRVWit4G",
+                    lyrics: "https://www.letras.mus.br/bras-adoracao/vem-cantar-louvores/"
+                },
+                {
+                    title: "Vitorioso És (Ao Vivo)",
+                    artist: "Gabriel Guedes de Almeida",
+                    key: "E",
+                    youtube: "https://youtu.be/k7tGP-vidwc?si=mHv4YWvxIQjAB_-n",
+                    lyrics: "https://www.letras.mus.br/gabriel-guedes/vitorioso-es/"
+                },
+                {
+                    title: "Vou Deixar na Cruz (Ao Vivo)",
+                    artist: "Kleber Lucas",
+                    key: "F",
+                    youtube: "https://youtu.be/mF7l0O2UqGA?si=xOmXnMtxRT2Q3guA",
+                    lyrics: "https://www.letras.mus.br/kleber-lucas/vou-deixar-na-cruz/"
+                },
+                {
+                    title: "Tudo é perda",
+                    artist: "Felipe Rodrigues",
+                    key: "B",
+                    youtube: "https://youtu.be/qxzQR5uwWsk?si=46wC1VvyPLYCBwcG",
+                    lyrics: "https://www.letras.mus.br/felipe-rodrigues/tudo-e-perda/"
+                },
+                {
+                    title: "Furioso Oceano",
+                    artist: "Jhonas Serra",
+                    key: "C",
+                    youtube: "https://youtu.be/bmAwpcTyKyo?si=NTTnmBsdhPRq0X_C",
+                    lyrics: "https://www.letras.mus.br/jhonas-serra/furioso-oceano/"
+                },
+                {
+                    title: "Yeshua Salmo 121",
+                    artist: "Felipe Salvaon",
+                    key: "E",
+                    youtube: "https://youtu.be/fTW--mAyZTg?si=ED8R4ixejSknP96_",
+                    lyrics: "https://www.letras.mus.br/jose-augusto-five-music/yeshua/"
+                },
+                {
+                    title: "Saudade",
+                    artist: "Felipe Rodrigues",
+                    key: "G",
+                    youtube: "https://youtu.be/23kl8jSXRok?si=CZ0Lv0E868KEFCiN",
+                    lyrics: "https://www.letras.mus.br/felipe-rodrigues/saudade/"
+                },
+                {
+                    title: "Basta Querer",
+                    artist: "Pe Marcelo Rossi",
+                    key: "G",
+                    youtube: "https://youtu.be/BPdRNwFoOJM?si=asVhCqwHNUQVotOW",
+                    lyrics: "https://www.letras.mus.br/padre-marcelo-rossi/47894/"
+                }
+            ];
             
-            // Filtrar músicas
+            // Inicializar estatísticas
+            totalSongsElement.textContent = songs.length;
+            filteredSongsElement.textContent = songs.length;
+            
+            // Renderizar músicas
+            renderSongs(songs);
+            
+            // Filtrar músicas por busca
             searchInput.addEventListener('input', function() {
+                filterSongs();
+            });
+            
+            // Filtrar músicas por tom
+            tomFilter.addEventListener('change', function() {
+                filterSongs();
+            });
+            
+            // Função para filtrar músicas
+            function filterSongs() {
                 const searchTerm = searchInput.value.toLowerCase();
-                let visibleCount = 0;
+                const selectedTom = tomFilter.value;
                 
-                songItems.forEach(song => {
-                    const title = song.getAttribute('data-title').toLowerCase();
-                    const artist = song.getAttribute('data-artist').toLowerCase();
-                    const key = song.getAttribute('data-key').toLowerCase();
+                const filteredSongs = songs.filter(song => {
+                    const matchesSearch = song.title.toLowerCase().includes(searchTerm) || 
+                                         song.artist.toLowerCase().includes(searchTerm) ||
+                                         song.key.toLowerCase().includes(searchTerm);
                     
-                    if (title.includes(searchTerm) || artist.includes(searchTerm) || key.includes(searchTerm)) {
-                        song.style.display = 'block';
-                        visibleCount++;
-                    } else {
-                        song.style.display = 'none';
-                    }
+                    const matchesTom = selectedTom === '' || song.key === selectedTom;
+                    
+                    return matchesSearch && matchesTom;
                 });
                 
-                // Mostrar mensagem se nenhuma música for encontrada
-                if (visibleCount === 0) {
-                    noSongsMessage.style.display = 'block';
-                } else {
-                    noSongsMessage.style.display = 'none';
-                }
-            });
+                renderSongs(filteredSongs);
+                filteredSongsElement.textContent = filteredSongs.length;
+            }
             
-            // Extrair dados dos atributos para elementos internos (para garantir consistência)
-            songItems.forEach(song => {
-                const title = song.getAttribute('data-title');
-                const artist = song.getAttribute('data-artist');
-                const key = song.getAttribute('data-key');
-                const youtube = song.getAttribute('data-youtube');
-                const lyrics = song.getAttribute('data-lyrics');
-                
-                // Atualizar elementos internos com os dados dos atributos
-                const titleElement = song.querySelector('.song-title');
-                const artistElement = song.querySelector('.artist');
-                const keyElement = song.querySelector('.key');
-                const youtubeLink = song.querySelector('.youtube-link');
-                const lyricsLink = song.querySelector('.lyrics-link');
-                
-                if (titleElement && title) titleElement.textContent = title;
-                if (artistElement && artist) artistElement.textContent = artist;
-                if (keyElement && key) keyElement.textContent = key;
-                
-                // Se não há link do YouTube, remover o botão
-                if ((!youtube || youtube === '') && youtubeLink) {
-                    youtubeLink.remove();
-                } else if (youtubeLink) {
-                    youtubeLink.href = youtube;
+            // Função para renderizar músicas
+            function renderSongs(songsToRender) {
+                if (songsToRender.length === 0) {
+                    songList.innerHTML = '<p class="no-songs">Nenhuma música encontrada.</p>';
+                    return;
                 }
-                // Se não há link de letra, remover o botão
-                if ((!lyrics || lyrics === '') && lyricsLink) {
-                    lyricsLink.remove();
-                } else if (lyricsLink) {
-                    lyricsLink.href = lyrics;
-                }
-            });
+                
+                songList.innerHTML = '';
+                
+                songsToRender.forEach(song => {
+                    const songElement = document.createElement('div');
+                    songElement.className = 'song-item';
+                    
+                    songElement.innerHTML = `
+                        <div class="song-title">${escapeHTML(song.title)}</div>
+                        <div class="song-details">
+                            <span class="detail-label"><i class="fas fa-user"></i> Intérprete:</span>
+                            <span class="artist">${escapeHTML(song.artist)}</span>
+                            
+                            <span class="detail-label"><i class="fas fa-music"></i> Tom:</span>
+                            <span class="key">${escapeHTML(song.key)}</span>
+                        </div>
+                        <div class="song-links">
+                            ${song.youtube ? `
+                                <a href="${escapeHTML(song.youtube)}" target="_blank" class="youtube-link">
+                                    <i class="fab fa-youtube"></i> Ver no YouTube
+                                </a>
+                            ` : ''}
+                            ${song.lyrics ? `
+                                <a href="${escapeHTML(song.lyrics)}" target="_blank" class="lyrics-link">
+                                    <i class="fas fa-file-alt"></i> Ver Letra
+                                </a>
+                            ` : ''}
+                        </div>
+                    `;
+                    
+                    songList.appendChild(songElement);
+                });
+            }
+            
+            // Função para evitar injection
+            function escapeHTML(str) {
+                return str
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+            }
         });
     </script>
 </body>
 </html>
-
-
-
-
-
